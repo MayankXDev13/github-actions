@@ -4,8 +4,6 @@ services:
     restart: unless-stopped
     networks:
       - frontend
-    ports:
-      - "4173:4173"
 
   nginx:
     image: nginx:latest
@@ -14,6 +12,8 @@ services:
       - frontend
     ports:
       - "80:80"
+    depends_on:
+      - frontend
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
 
